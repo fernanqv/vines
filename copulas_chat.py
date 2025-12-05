@@ -27,9 +27,10 @@ def fit_copula_block(block_id, vines_per_block, u, matrices7):
             show_trace=False,
             parametric_method="mle",
         )
-
+        print(matrices7[vine_id])
         cop = pv.Vinecop.from_data(u, matrix=matrices7[vine_id], controls=controls)
         aic = cop.aic()
+        print(cop)
         results.append((int(vine_id), int(cop.npars), aic))
 
         # MARCEL'S WAY: We have verified both ways give the same AIC
@@ -80,3 +81,4 @@ if __name__ == "__main__":
     print(
         f"Processed block {args.block_id} with {args.vines_per_block} vines per block."
     )
+    print("cat results7_id* | sort -n > resultados.csv")
